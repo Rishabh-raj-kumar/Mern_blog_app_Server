@@ -68,7 +68,9 @@ app.post("/register", async (req, res) => {
 });
 
 app.post("/login", async (req, res) => {
+  req.header('Access-Control-Allow-Origin', 'https://mern-blog-app-frontend-seven.vercel.app')
   res.header('Access-Control-Allow-Origin', 'https://mern-blog-app-frontend-seven.vercel.app');
+  
   const { email, username, password } = req.body;
   const userDoc = await User.findOne({ email });
   const passOk = bcrypt.compareSync(password, userDoc.password);
