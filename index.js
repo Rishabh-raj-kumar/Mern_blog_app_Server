@@ -67,6 +67,7 @@ app.post("/login", async (req, res) => {
   const { email, username, password } = req.body;
   const userDoc = await User.findOne({ email });
   const passOk = bcrypt.compareSync(password, userDoc.password);
+
   if (passOk) {
     jwt.sign({ username, id: userDoc._id }, secret, {}, (error, token) => {
       if (error) throw error;
@@ -74,6 +75,7 @@ app.post("/login", async (req, res) => {
         id: userDoc._id,
         username,
       });
+      console.log(res.cookie)
     });
   } else {
     res.status(400).send("error");
