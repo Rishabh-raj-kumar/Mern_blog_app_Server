@@ -8,7 +8,11 @@ const uploadMiddleWare = multer({ dest: "uploads/" });
 const fs = require("fs");
 const app = express();
 //to fetch credential in client side.
-app.use(cors({ credentials: true, origin :"*",}));
+app.use(cors({
+  origin : ["https://mern-blog-app-frontend-oire2hmls-rishabh-raj-kumar.vercel.app"],
+  method : ["POST","GET"],
+  credentials : true
+}));
 app.use(express.json());
 app.use(cookieParser());
 //to load image in frontend properly..
