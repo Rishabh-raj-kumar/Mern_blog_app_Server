@@ -87,7 +87,7 @@ app.post("/login", async (req, res) => {
 });
 
 app.get("/profile", (req, res) => {
-  res.header('Access-Control-Allow-Origin', 'https://mern-blog-app-frontend-oire2hmls-rishabh-raj-kumar.vercel.app');
+  res.send('profile');
   console.log(req.cookies)
   // const { token } = req.cookies;
 
