@@ -81,14 +81,15 @@ app.post("/login", async (req, res) => {
 });
 
 app.get("/profile", (req, res) => {
-  const { token } = req.cookies;
+  console.log(req)
+  // const { token } = req.cookies;
 
-  jwt.verify(token, secret, {}, (error, info) => {
-    if (error) throw error;
-    res.json(info);
-  });
-  console.log(token);
-  res.json(req.cookies);
+  // jwt.verify(token, secret, {}, (error, info) => {
+  //   if (error) throw error;
+  //   res.json(info);
+  // });
+  // console.log(token);
+  // res.json(req.cookies);
 });
 
 app.get("/logout", (req, res) => {
