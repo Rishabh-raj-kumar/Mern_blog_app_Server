@@ -9,7 +9,7 @@ const fs = require("fs");
 const app = express();
 //to fetch credential in client side.
 app.use(cors({
-  origin : ["https://mern-blog-app-frontend-seven.vercel.app"],
+  origin : ["https://mern-blog-app-frontend-seven.vercel.app","*"],
   credentials : true
 }));
 app.use(express.json());
@@ -68,9 +68,8 @@ app.post("/register", async (req, res) => {
 });
 
 app.post("/login", async (req, res) => {
-  req.header('Access-Control-Allow-Origin', 'https://mern-blog-app-frontend-seven.vercel.app')
   res.header('Access-Control-Allow-Origin', 'https://mern-blog-app-frontend-seven.vercel.app');
-  
+
   const { email, username, password } = req.body;
   const userDoc = await User.findOne({ email });
   const passOk = bcrypt.compareSync(password, userDoc.password);
