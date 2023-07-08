@@ -10,8 +10,6 @@ const app = express();
 //to fetch credential in client side.
 app.use(cors({
   origin : ["https://mern-blog-app-frontend-seven.vercel.app"],
-  method : ["POST","GET"],
-  credentials : true
 }));
 app.use(express.json());
 app.use(cookieParser());
