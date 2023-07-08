@@ -48,7 +48,7 @@ app.get("/", (req, res) => {
 
 app.post("/register", async (req, res) => {
   res.header('Access-Control-Allow-Origin', 'https://mern-blog-app-frontend-seven.vercel.app');
-  console.log(req.body);
+  // console.log(req.body);
 
   try {
     //if user is not present in databse..
