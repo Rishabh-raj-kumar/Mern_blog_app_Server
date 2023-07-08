@@ -48,6 +48,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/register", async (req, res) => {
+  res.set('Access-Control-Allow-Origin', 'https://mern-blog-app-frontend-oire2hmls-rishabh-raj-kumar.vercel.app');
   console.log(req.body);
 
   try {
@@ -68,6 +69,7 @@ app.post("/register", async (req, res) => {
 });
 
 app.post("/login", async (req, res) => {
+  res.set('Access-Control-Allow-Origin', 'https://mern-blog-app-frontend-oire2hmls-rishabh-raj-kumar.vercel.app');
   const { email, username, password } = req.body;
   const userDoc = await User.findOne({ email });
   const passOk = bcrypt.compareSync(password, userDoc.password);
@@ -87,6 +89,7 @@ app.post("/login", async (req, res) => {
 });
 
 app.get("/profile", (req, res) => {
+  res.set('Access-Control-Allow-Origin', 'https://mern-blog-app-frontend-oire2hmls-rishabh-raj-kumar.vercel.app');
   console.log(req.cookies)
   // const { token } = req.cookies;
 
@@ -104,6 +107,7 @@ app.get("/logout", (req, res) => {
 
 //add the Post in database..
 app.post("/post", uploadMiddleWare.single("file"), async (req, res) => {
+  res.set('Access-Control-Allow-Origin', 'https://mern-blog-app-frontend-oire2hmls-rishabh-raj-kumar.vercel.app');
   //we have to add webp extension to our file.
   const { originalname, path } = req.file;
   const parts = originalname.split(".");
