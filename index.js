@@ -104,6 +104,7 @@ app.get("/logout", (req, res) => {
 app.post("/post", uploadMiddleWare.single("file"), async (req, res) => {
   //we have to add webp extension to our file.
   const { originalname, path } = req.file;
+  console.log(originalname,path);
   const parts = originalname.split(".");
   const ext = parts[parts.length - 1];
   const newPath = path + "." + ext;
