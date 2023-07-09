@@ -111,6 +111,7 @@ app.post("/post", uploadMiddleWare.single("file"), async (req, res) => {
   fs.renameSync(path, newPath);
   // console.log(req.file)
 
+  console.log(req.cookies);
   const { token } = req.cookies;
   //we will first fetch logined user..
   jwt.verify(token, secret, {}, async (error, info) => {
@@ -131,7 +132,7 @@ app.post("/post", uploadMiddleWare.single("file"), async (req, res) => {
 app.get("/post", async (req, res) => {
   // we will extract username from author objectId.
   res.json(await Post.find().populate('author',['username'])
-  .limit(20))
+  .limit(20));
 });
 
 //fetch data in a single page..
