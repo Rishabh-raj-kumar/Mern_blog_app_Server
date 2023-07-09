@@ -15,7 +15,7 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 //to load image in frontend properly..
-app.use("/uploads", express.static(__dirname + "/uploads"));
+app.use("/uploads", express.static(__dirname + "/tmp/uploads"));
 
 const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
