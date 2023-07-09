@@ -9,7 +9,7 @@ const fs = require("fs");
 const app = express();
 //to fetch credential in client side.
 app.use(cors({
-  origin : ["https://mern-blog-app-frontend-seven.vercel.app","*"],
+  origin : "http://localhost:3000",
   credentials : true
 }));
 app.use(express.json());
@@ -47,7 +47,6 @@ app.get("/", (req, res) => {
 });
 
 app.post("/register", async (req, res) => {
-  res.header('Access-Control-Allow-Origin', 'https://mern-blog-app-frontend-seven.vercel.app');
   // console.log(req.body);
 
   try {
@@ -68,8 +67,6 @@ app.post("/register", async (req, res) => {
 });
 
 app.post("/login", async (req, res) => {
-  res.header('Access-Control-Allow-Origin', 'https://mern-blog-app-frontend-seven.vercel.app');
-
   const { email, username, password } = req.body;
   const userDoc = await User.findOne({ email });
   const passOk = bcrypt.compareSync(password, userDoc.password);
@@ -89,16 +86,15 @@ app.post("/login", async (req, res) => {
 });
 
 app.get("/profile", (req, res) => {
-  res.send('profile');
   console.log(req.cookies)
-  // const { token } = req.cookies;
+  const { token } = req.cookies;
 
-  // jwt.verify(token, secret, {}, (error, info) => {
-  //   if (error) throw error;
-  //   res.json(info);
-  // });
-  // console.log(token);
-  // res.json(req.cookies);
+  jwt.verify(token, secret, {}, (error, info) => {
+    if (error) throw error;
+    res.json(info);
+  });
+  console.log(token);
+  res.json(req.cookies);
 });
 
 app.get("/logout", (req, res) => {
@@ -107,7 +103,6 @@ app.get("/logout", (req, res) => {
 
 //add the Post in database..
 app.post("/post", uploadMiddleWare.single("file"), async (req, res) => {
-  res.header('Access-Control-Allow-Origin', 'https://mern-blog-app-frontend-seven.vercel.app');
   //we have to add webp extension to our file.
   const { originalname, path } = req.file;
   const parts = originalname.split(".");
@@ -145,6 +140,7 @@ app.get('/post/:id',async(req,res) =>{
    res.json(await Post.findById(id).populate('author',['username']));
 })
 
-app.listen(process.env.PORT, () => {
-  console.log(`listening on Port http://localhost:${process.env.PORT}`);
+const PORT = process.env.PORT || 6000;
+app.listen(PORT, () => {
+  console.log(`listening on Port http://localhost:${PORT}`);
 });
