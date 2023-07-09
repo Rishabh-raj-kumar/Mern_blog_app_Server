@@ -9,7 +9,7 @@ const fs = require("fs");
 const app = express();
 //to fetch credential in client side.
 app.use(cors({
-  origin : "http://localhost:3000",
+  origin : "https://mern-blog-app-frontend-seven.vercel.app",
   credentials : true
 }));
 app.use(express.json());
