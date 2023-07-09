@@ -78,7 +78,6 @@ app.post("/login", async (req, res) => {
         id: userDoc._id,
         username,
       });
-      res.json(req.cookies);
     });
   } else {
     res.status(400).send("error");
@@ -87,14 +86,14 @@ app.post("/login", async (req, res) => {
 
 app.get("/profile", (req, res) => {
   console.log(req)
-  // const { token } = req.cookies;
+  const { token } = req.cookies;
 
-  // jwt.verify(token, secret, {}, (error, info) => {
-  //   if (error) throw error;
-  //   res.json(info);
-  // });
-  // console.log(token);
-  // res.json(req.cookies);
+  jwt.verify(token, secret, {}, (error, info) => {
+    if (error) throw error;
+    res.json(info);
+  });
+  console.log(token);
+  res.json(req.cookies);
 });
 
 app.get("/logout", (req, res) => {
