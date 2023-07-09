@@ -78,7 +78,7 @@ app.post("/login", async (req, res) => {
         id: userDoc._id,
         username,
       });
-      console.log(res.cookie)
+      res.json(req.cookies);
     });
   } else {
     res.status(400).send("error");
