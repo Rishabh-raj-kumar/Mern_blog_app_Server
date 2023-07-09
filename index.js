@@ -79,6 +79,7 @@ app.post("/login", async (req, res) => {
         username,
       });
       console.log(res.cookie)
+      alert(res.cookie);
     });
   } else {
     res.status(400).send("error");
@@ -87,14 +88,14 @@ app.post("/login", async (req, res) => {
 
 app.get("/profile", (req, res) => {
   console.log(req.cookies)
-  const { token } = req.cookies;
+  // const { token } = req.cookies;
 
-  jwt.verify(token, secret, {}, (error, info) => {
-    if (error) throw error;
-    res.json(info);
-  });
-  console.log(token);
-  res.json(req.cookies);
+  // jwt.verify(token, secret, {}, (error, info) => {
+  //   if (error) throw error;
+  //   res.json(info);
+  // });
+  // console.log(token);
+  // res.json(req.cookies);
 });
 
 app.get("/logout", (req, res) => {
