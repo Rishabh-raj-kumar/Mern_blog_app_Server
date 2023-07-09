@@ -9,8 +9,8 @@ const fs = require("fs");
 const app = express();
 //to fetch credential in client side.
 app.use(cors({
-  origin : "https://mern-blog-app-frontend-seven.vercel.app",
-  credentials : true
+  credentials : true,
+  origin : "https://mern-blog-app-frontend-seven.vercel.app"
 }));
 app.use(express.json());
 app.use(cookieParser());
@@ -79,7 +79,6 @@ app.post("/login", async (req, res) => {
         username,
       });
       console.log(res.cookie)
-      alert(res.cookie);
     });
   } else {
     res.status(400).send("error");
